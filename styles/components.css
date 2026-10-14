@@ -6020,3 +6020,15 @@
   gap: 6px;
   padding: 0 10px 8px;
 }
+
+/* REPAIR: card aspect-ratio —— 真机窄视口图标溢出卡片
+   卡片 grid 为 "body body" / "icon chevron"，图标在第二行、align-self:end。
+   3/2 宽高比把高度锁成「宽 × 2/3」：窄屏下宽度变小，比例高度装不下
+   标题+描述+图标两行，而 min-height 固定值又覆盖了 grid 的内容自适应，
+   于是图标行被整个挤出卡片外。窄视口下改为高度随内容自适应，同行卡片
+   由 grid 的 stretch 自动等高；宽视口保持原 3/2 外观不变。 */
+@media (max-width: 500px) {
+  .card-card {
+    aspect-ratio: auto;
+  }
+}
