@@ -284,6 +284,11 @@ class MainActivity : AppCompatActivity() {
             databaseEnabled = true
             mediaPlaybackRequiresUserGesture = false
             allowFileAccess = false
+            // 让页面的 <meta viewport> 生效。WebView 默认 useWideViewPort=false 时
+            // 使用 980px 布局视口，站点里的 @media (max-width:500px) 便不成立，
+            // 移动端布局整套失效、退化为桌面「手机样机」居中缩放（窄屏机型四周黑边）。
+            useWideViewPort = true
+            loadWithOverviewMode = true
             userAgentString = "$userAgentString FloatShell/$VERSION"
         }
         CookieManager.getInstance().setAcceptCookie(true)
